@@ -1,5 +1,6 @@
 # days-left-new-tab
 荏苒：一个讲述时光故事的新标签页（chrome扩展）
+用来在新标签页显示日期进度，比如：今年已过天数、生命剩余多少天😱等等
 
 从chrome web store 下载：https://chrome.google.com/webstore/detail/days-left/emdccdmkpdcjbbeifnhmjieikaibegjn
 
