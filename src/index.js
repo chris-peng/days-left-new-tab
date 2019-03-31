@@ -280,7 +280,13 @@ function initSettingWindow(){
     var radioClick = function(){
         Settings.searchEngine = this.value;
     };
+    var currentSe = Settings.searchEngine;
     seRadios.forEach(function(v, i){
+        if(v.value == currentSe){
+            v.checked = 'checked';
+        }else{
+            delete v.checked;
+        }
         v.onclick = radioClick;
     });
     $('#fg-color').value = Settings.fgColor;
