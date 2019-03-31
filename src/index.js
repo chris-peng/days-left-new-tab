@@ -195,10 +195,15 @@ function onSuggestionReceived(r){
     var suggestionsHtml = '';
     if(r.s && r.s.length > 0){
         r.s.forEach(function(v, i){
-            suggestionsHtml += '<li><span onclick="doSearch(this.innerText)" onmouseover="searchItemHover(this)" onmouseout="searchItemMouseout(this)">' + v + '</span></li>';
+            suggestionsHtml += '<li><span>' + v + '</span></li>';
         });
         currentSelectSuggestionIndex = -1;
         suggestionsCtn.innerHTML = suggestionsHtml;
+        $$('.suggestions-ctn li span').forEach(function(v, i){
+            v.onclick = function(){doSearch(this.innerText)};
+            v.onmouseover = function(){searchItemHover(this)};
+            v.onmouseout = function(){searchItemMouseout(this)};
+        });
     }
 }
 function searchItemHover(item){
