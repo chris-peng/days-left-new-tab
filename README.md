@@ -4,7 +4,7 @@
 
 从chrome web store 下载：https://chrome.google.com/webstore/detail/days-left/emdccdmkpdcjbbeifnhmjieikaibegjn
 
-或者直接下载crx文件：[0.04](https://github.com/chris-peng/days-left-new-tab/releases/download/1.0.2/renran.crx)
+或者直接下载crx文件：[1.0.3](https://github.com/chris-peng/days-left-new-tab/releases/download/1.0.3/renran.crx)
 
 crx文件安装方式：
 1.chrome（或其他chrome内核）浏览器打开chrome://extensions/
