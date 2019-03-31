@@ -24,7 +24,7 @@
         "storage", // 插件本地存储
         "http://suggestion.baidu.com/"
     ],
-    "homepage_url": "https://github.com/chris-peng/",
+    "homepage_url": "https://github.com/chris-peng/days-left-new-tab",
     // 覆盖浏览器默认页面
     "chrome_url_overrides":
     {
