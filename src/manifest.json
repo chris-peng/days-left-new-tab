@@ -1,10 +1,7 @@
 {
     "manifest_version": 2,
-    // 插件的名称
     "name": "__MSG_pluginName__",
-    // 插件的版本
     "version": "1.0.2",
-    // 插件描述
     "description": "__MSG_pluginDesc__",
     "icons":
     {
@@ -15,23 +12,18 @@
     "browser_action": 
     {
         "default_icon": "img/icon.png",
-        // 图标悬停时的标题，可选
         "default_title": "__MSG_pluginName__: __MSG_pluginDesc__"
     },
-    // 权限申请
     "permissions":
     [
-        "storage", // 插件本地存储
+        "storage",
         "http://suggestion.baidu.com/"
     ],
     "homepage_url": "https://github.com/chris-peng/days-left-new-tab",
-    // 覆盖浏览器默认页面
     "chrome_url_overrides":
     {
-        // 覆盖浏览器默认的新标签页
         "newtab": "index.html"
     },
-    // 默认语言
     "default_locale": "en",
     "content_security_policy":"script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
