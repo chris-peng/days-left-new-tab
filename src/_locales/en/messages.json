@@ -1,0 +1,10 @@
+{
+    "pluginName": {"message": "Days Left"},
+    "pluginDesc": {"message": "A new tab page show you the flying of time"},
+    "dateInterval": {"message": "Date Interval"},
+    "incorrectDate": {"message": "Incorrect date!"},
+    "searchEngine": {"message": "Search Engine"},
+    "fgColor": {"message": "Foreground Color"},
+    "bgColor": {"message": "Background Color"},
+    "baidu": {"message": "Baidu"}
+}

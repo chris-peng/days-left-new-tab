@@ -1,0 +1,162 @@
+body {
+    overflow: hidden;
+}
+
+.progress-ctn {
+    background-color: #eeeeee;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+
+}
+
+.progress-ctn .past {
+    background-color: black;
+    height: 400%;
+    width: 0%;
+    transform: rotate(10deg);
+    position: absolute;
+    top: -200%;
+    left: 0;
+}
+
+.light {
+    position: absolute;
+    left: -40%;
+    top: 0;
+    width: 10%;
+    height: 100%;
+    background-image: -moz-linear-gradient(0deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    background-image: -webkit-linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3));
+    z-index: 999;
+}
+
+.light.ani {
+    left: 100%;
+    -moz-transition: 0.8s;
+    -o-transition: 0.8s;
+    -webkit-transition: 0.8s;
+    transition: 0.8s;
+    transition-delay: 0.5s;
+    -moz-transition-delay: 0.5s;
+    -o-transition-delay: 0.5s;
+    -webkit-transition-delay: 0.5s;
+}
+
+.progress-ctn .title {
+    text-align: left;
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    width: 100%;
+    font-size: 3rem;
+    color: #eeeeee;
+}
+
+.search-ctn {
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    text-align: center;
+    z-index: 999;
+    background-color: transparent;
+}
+
+.search-ctn input {
+    display: inline-block;
+    width: 50%;
+    border: 0px solid black;
+    border-radius: 1.6rem;
+    height: 2rem;
+    padding: 0.5rem 2rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    outline: none;
+    background-color: transparent;
+    color: #eeeeee;
+    text-align: center;
+}
+
+.clear-text {
+    text-shadow: 2px 0 2px black,0 2px 2px black,-2px 0 2px black,0 -2px 2px black;
+}
+
+.progress-ctn .setting {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    width: 2rem;
+    height: 2rem;
+    z-index: 999;
+}
+
+.progress-ctn .setting a {
+    background-image: url(img/setting.png);
+    background-size: cover;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.c-window {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    /* display: flex; */
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.c-window .window-content {
+    background-color: white;
+    display: inline-block;
+}
+
+.clear-box-shadow {
+    box-shadow: 2px 2px 1rem black, -2px -2px 1rem #eeeeee;
+}
+
+.c-window form {
+    padding: 0.5rem 2rem 1rem 2rem;
+}
+
+.c-window form .form-item {
+    margin: 1rem 0;
+}
+
+.c-window .window-close {
+    text-align: right;
+    color: black;
+}
+
+.c-window .window-close a{
+    color: black;
+}
+
+.c-window .window-close a {
+    padding: 0.5rem;
+    text-decoration: none;
+}
+
+.suggestions-ctn {
+    list-style: none;
+    color: white;
+    font-size: 1.2rem;
+    display: inline-block;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.suggestions-ctn li span {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-style: italic;
+    cursor: pointer;
+}

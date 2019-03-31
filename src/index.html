@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="index.css">
+    <title></title>
+</head>
+<body>
+    <div class="search-ctn">
+        <input class="clear-text" type="text">
+        <ul class="suggestions-ctn clear-text">
+        </ul>
+    </div>
+    <div class="progress-ctn">
+        <div class="past">
+            <div class="light"></div>
+        </div>
+
+        <div class="title">
+            <span class="clear-text" contenteditable="true"></span>
+        </div>
+
+        <div class="setting">
+            <a href="###" ></a>
+        </div>
+    </div>
+
+    <div class="c-window" id="setting-window">
+        <div class="window-content clear-box-shadow">
+            <div class="window-close"><a href="###">✕</a></div>
+            <form>
+                <div class="form-item">
+                    <label for="from-day" id="label-date-interval"></label>
+                    <input type="date" id="from-day" >~
+                    <input type="date" id="to-day" >
+                </div>
+                <div class="form-item">
+                    <label for="search-engine" id="label-search-engine"></label>
+                    <input type="radio" name="search-engine" id="radio-baidu" value="baidu" checked="checked"><label for="radio-baidu" id="label-radio-baidu"></label>
+                    <input type="radio" name="search-engine" id="radio-google" value="google" ><label for="radio-google">Google</label>
+                    <input type="radio" name="search-engine" id="radio-bing" value="bing" ><label for="radio-bing">Bing</label>
+                </div>
+                <div class="form-item">
+                    <label for="fg-color" id="label-fg-color"></label>
+                    <input type="color" id="fg-color" >
+                    <label for="bg-color" style="margin-left:1rem;" id="label-bg-color"></label>
+                    <input type="color" id="bg-color" >
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="network.js"></script>
+    <script src="index.js"></script>
+
+</body>
+</html>

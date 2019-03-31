@@ -1,0 +1,10 @@
+{
+    "pluginName": {"message": "荏苒"},
+    "pluginDesc": {"message": "一个给你讲述时光故事的新标签页"},
+    "dateInterval": {"message": "起止日期"},
+    "incorrectDate": {"message": "起止日期不正确！"},
+    "searchEngine": {"message": "搜索引擎"},
+    "fgColor": {"message": "前景颜色"},
+    "bgColor": {"message": "背景颜色"},
+    "baidu": {"message": "百度"}
+}
