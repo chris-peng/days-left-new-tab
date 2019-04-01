@@ -1,10 +1,10 @@
 # days-left-new-tab
-荏苒：一个讲述时光故事的新标签页（chrome扩展）
+荏苒：一个连接时光这端和那端的新标签页（chrome扩展）
 用来在新标签页显示日期进度，比如：今年已过天数、生命剩余多少天😱等等
 
 从chrome web store 下载：https://chrome.google.com/webstore/detail/days-left/emdccdmkpdcjbbeifnhmjieikaibegjn
 
-或者直接下载crx文件：[1.0.4](https://github.com/chris-peng/days-left-new-tab/releases/download/1.0.4/renran.crx)
+或者直接下载crx文件：[1.0.5](https://github.com/chris-peng/days-left-new-tab/releases/download/1.0.5/renran.crx)
 
 crx文件安装方式：
 1.chrome（或其他chrome内核）浏览器打开chrome://extensions/
