@@ -1,7 +1,8 @@
 {
     "manifest_version": 2,
     "name": "__MSG_pluginName__",
-    "version": "1.0.4",
+    "short_name": "__MSG_shortName__",
+    "version": "1.0.5",
     "description": "__MSG_pluginDesc__",
     "icons":
     {
@@ -12,7 +13,7 @@
     "browser_action": 
     {
         "default_icon": "img/icon.png",
-        "default_title": "__MSG_pluginName__: __MSG_pluginDesc__"
+        "default_title": "__MSG_shortName__: __MSG_pluginDesc__"
     },
     "permissions":
     [

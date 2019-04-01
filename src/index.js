@@ -84,7 +84,7 @@ function initSettings(){
     var title = Settings.title;
     var thisYear = getThisYear();
     if(!title || title.trim() == '' || /^[(<br>)(<br\/>)]*$/.test(title)){
-        Settings.title = i18n('pluginName') + ' ' + thisYear;
+        Settings.title = i18n('shortName') + ' ' + thisYear;
     }
     if(!Settings.fromDay){
         Settings.fromDay = thisYear + '-01-01';

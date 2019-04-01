@@ -1,6 +1,7 @@
 {
-    "pluginName": {"message": "Days Left"},
-    "pluginDesc": {"message": "A new tab page show you the flying of time"},
+    "pluginName": {"message": "Days Left New Tab"},
+    "shortName": {"message": "Days Left"},
+    "pluginDesc": {"message": "A new tab page shows you the flying of time"},
     "dateInterval": {"message": "Date Interval"},
     "incorrectDate": {"message": "Incorrect date!"},
     "searchEngine": {"message": "Search Engine"},
