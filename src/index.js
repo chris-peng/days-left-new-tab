@@ -153,6 +153,12 @@ function initSearch(){
             suggestionsCtn.innerHTML = '';
         }
     }
+    $('body').onkeydown = function(e){
+        if(e.keyCode == 17 || e.keyCode == 91 || e.keyCode == 93){
+            //Control or Command
+            searchInput.focus();
+        }
+    }
     $('body').onkeypress = function(e){
         searchInput.focus();
     }
@@ -201,20 +207,9 @@ function onSuggestionReceived(r){
         suggestionsCtn.innerHTML = suggestionsHtml;
         $$('.suggestions-ctn li span').forEach(function(v, i){
             v.onclick = function(){doSearch(this.innerText)};
-            v.onmouseover = function(){searchItemHover(this)};
-            v.onmouseout = function(){searchItemMouseout(this)};
         });
     }
 }
-function searchItemHover(item){
-    if(currentSelectSuggestionIndex >= 0 && currentSelectSuggestionIndex < suggestionsCtn.childNodes.length){
-        suggestionsCtn.childNodes[currentSelectSuggestionIndex].childNodes[0].classList.remove('clear-box-shadow');
-    }
-    item.classList.add('clear-box-shadow');
-};
-function searchItemMouseout(item){
-    item.classList.remove('clear-box-shadow');
-};
 function doSearch(keyword){
     window.location.href = SearchEngines[Settings.searchEngine].replace('{keyword}', keyword);
 }

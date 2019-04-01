@@ -160,3 +160,7 @@ body {
     font-style: italic;
     cursor: pointer;
 }
+
+.suggestions-ctn li span:hover {
+    text-decoration: underline;
+}
