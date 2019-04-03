@@ -119,27 +119,33 @@ function refreshColors(){
     var bgColor = Settings.bgColor;
     var fgColor = Settings.fgColor;
     if(bgColor){
-        $('.progress-ctn').style['background-color'] = bgColor;
-        $('.progress-ctn .title').style['color'] = bgColor;
-        $('.search-ctn input').style['color'] = bgColor;
-        $('.suggestions-ctn').style['color'] = bgColor;
+        Theme.changeRule('.progress-ctn', 'background-color', bgColor);
+        Theme.changeRule('.progress-ctn .title', 'color', bgColor);
+        Theme.changeRule('.search-ctn input', 'color', bgColor);
+        Theme.changeRule('.suggestions-ctn', 'color', bgColor);
+        Theme.changeRule('.percents', 'color', bgColor);
     }
     if(fgColor){
-        $('.progress-ctn .past').style['background-color'] = fgColor;
-        $('.clear-text').style['text-shadow'] = '2px 0 2px ' + fgColor + ',0 2px 2px ' + fgColor + ',-2px 0 2px ' + fgColor + ',0 -2px 2px ' + fgColor;
+        Theme.changeRule('.progress-ctn .past', 'background-color', fgColor);
+        Theme.changeRule('.progress-ctn .past', 'box-shadow', '0 0rem 10rem ' + fgColor);
+        Theme.changeRule('.clear-text', 'text-shadow', '2px 0 2px ' + fgColor + ',0 2px 2px ' + fgColor + ',-2px 0 2px ' + fgColor + ',0 -2px 2px ' + fgColor);
     }
     if(bgColor && fgColor){
-        $('.clear-box-shadow').style['box-shadow'] = '2px 2px 1rem ' + fgColor + ', -2px -2px 1rem ' + bgColor;
+        Theme.changeRule('.clear-box-shadow', 'box-shadow', '2px 2px 1rem ' + fgColor + ', -2px -2px 1rem ' + bgColor);
     }
 }
 
-//高光动画
+//高光和百分比动画
 function initLight(){
     $('.progress-ctn .past').onmouseover = function(){
         $('.progress-ctn .light').classList.add('ani');
+        $('.progress-ctn .percents').classList.remove('fadeout');
+        $('.progress-ctn .percents').classList.add('fadein');
     };
     $('.progress-ctn .past').onmouseout = function(){
         $('.progress-ctn .light').classList.remove('ani');
+        $('.progress-ctn .percents').classList.remove('fadein');
+        $('.progress-ctn .percents').classList.add('fadeout');
     };
 }
 
@@ -304,6 +310,9 @@ function setProgress(past, total){
     var pastPercent = (past / total * 1000) / 10;
     var past = $('.progress-ctn .past');
     aniToPast(pastPercent);
+    var percentSpan = $('.percents');
+    percentSpan.style.left = pastPercent + '%';
+    percentSpan.innerHTML = (Math.round(pastPercent * 10) / 10) + '%';
     if(pastPercent > 90){
         past.style.transform = 'rotate(' + (100 - pastPercent) + 'deg)';
     }else{
