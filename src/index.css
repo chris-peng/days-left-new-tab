@@ -154,16 +154,12 @@ body {
     margin: 1rem 0;
 }
 
-.c-window .window-close {
+.c-window .window-tools {
     text-align: right;
-    color: black;
+    padding-top: 0.5rem;
 }
-
-.c-window .window-close a{
+.window-tools .window-tool {
     color: black;
-}
-
-.c-window .window-close a {
     padding: 0.5rem;
     text-decoration: none;
 }

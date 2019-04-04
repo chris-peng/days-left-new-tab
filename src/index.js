@@ -176,12 +176,10 @@ function initSearch(){
         }
         if(e.keyCode == 38){
             //up arrow
-            preSuggestion();
             return;
         }
         if(e.keyCode == 40){
             //down arrow
-            nextSuggestion();
             return;
         }
         var keyword = searchInput.value;
@@ -196,9 +194,21 @@ function initSearch(){
             Ajax.get('http://suggestion.baidu.com/su?' + formatParams({wd: keyword, t: new Date().getTime(), cb: 'onSuggestionReceived'}), function(r){
                 eval(r);
             });
-        }, 300);
+        }, 200);
     };
     
+    searchInput.onkeydown = function(e){
+        if(e.keyCode == 38){
+            //up arrow
+            preSuggestion();
+            return;
+        }
+        if(e.keyCode == 40){
+            //down arrow
+            nextSuggestion();
+            return;
+        }
+    }
 }
 
 
@@ -266,7 +276,7 @@ function initSettingWindow(){
     settingWindow.onkeypress = function(e){
         e.stopPropagation();
     };
-    $('#setting-window .window-close a').onclick = function(){
+    $('#setting-window .window-close').onclick = function(){
         this.parentNode.parentNode.parentNode.style.display='none';
     };
     $('#from-day').value = Settings.fromDay;
