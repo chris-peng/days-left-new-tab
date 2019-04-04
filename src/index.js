@@ -174,6 +174,10 @@ function initSearch(){
             doSearch(this.value);
             return;
         }
+        if(e.keyCode == 27){
+            //ESC
+            return;
+        }
         if(e.keyCode == 38){
             //up arrow
             return;
