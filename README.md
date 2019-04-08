@@ -2,7 +2,7 @@
 荏苒：一个连接时光这端和那端的新标签页（chrome扩展）
 用来在新标签页显示日期进度，比如：今年已过天数、生命进程😱等等
 
-从chrome web store 下载：https://chrome.google.com/webstore/detail/days-left/emdccdmkpdcjbbeifnhmjieikaibegjn
+从chrome web store 安装：https://chrome.google.com/webstore/detail/days-left/emdccdmkpdcjbbeifnhmjieikaibegjn
 
 或者直接下载crx文件：[1.0.9](https://github.com/chris-peng/days-left-new-tab/releases/download/1.0.9/renran.crx)
 
