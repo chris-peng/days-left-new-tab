@@ -36,9 +36,16 @@
             </div>
             <form>
                 <div class="form-item">
-                    <label for="from-day" id="label-date-interval"></label>
+                    <input type="radio" name="mode" id="radio-every-day" value="EVERY_DAY" ><label for="radio-every-day" id="label-every-day"></label>
+                    <input type="radio" name="mode" id="radio-appoint" value="APPOINT" checked="checked"><label for="radio-appoint" id="label-date-interval"></label>
+                </div>
+                <div id="fieldset-APPOINT" name="mode-fieldset" class="form-item">
                     <input type="date" id="from-day" >~
                     <input type="date" id="to-day" >
+                </div>
+                <div id="fieldset-EVERY_DAY" name="mode-fieldset" class="form-item" style="display:none">
+                    <input type="time" id="from-time" >~
+                    <input type="time" id="to-time" >
                 </div>
                 <div class="form-item">
                     <label for="search-engine" id="label-search-engine"></label>

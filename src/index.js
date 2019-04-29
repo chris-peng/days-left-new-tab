@@ -1,6 +1,10 @@
 $ = document.querySelector.bind(document);
 $$ = document.querySelectorAll.bind(document);
 i18n = chrome.i18n.getMessage;
+MODE = {
+    EVERY_DAY: 'EVERY_DAY',
+    APPOINT : 'APPOINT'
+};
 
 var Settings = {
     get title(){
@@ -8,6 +12,14 @@ var Settings = {
     },
     set title(value){
         localStorage.setItem('title', value);
+    },
+
+    get mode(){
+        return localStorage.getItem('mode');
+    },
+    set mode(value){
+        localStorage.setItem('mode', value);
+        refreshProgress();
     },
 
     get fromDay(){
@@ -23,6 +35,22 @@ var Settings = {
     },
     set toDay(value){
         localStorage.setItem('toDay', value);
+        refreshProgress();
+    },
+
+    get fromTime(){
+        return localStorage.getItem('fromTime');
+    },
+    set fromTime(value){
+        localStorage.setItem('fromTime', value);
+        refreshProgress();
+    },
+
+    get toTime(){
+        return localStorage.getItem('toTime');
+    },
+    set toTime(value){
+        localStorage.setItem('toTime', value);
         refreshProgress();
     },
 
@@ -70,10 +98,16 @@ var result = refreshProgress();
 if(result < 0){
     alert(i18n('incorrectDate'));
 }
+setInterval(function(){
+    if(Settings.mode == MODE.EVERY_DAY){
+        refreshProgress(false);
+    }
+}, 30 * 1000);
 
 function initI18n(){
     document.title = i18n('pluginName');
-    $('#label-date-interval').innerHTML = i18n('dateInterval') + ':&nbsp;';
+    $('#label-every-day').innerHTML = i18n('everyDay');
+    $('#label-date-interval').innerHTML = i18n('dateInterval');
     $('#label-search-engine').innerHTML = i18n('searchEngine') + ':&nbsp;';
     $('#label-radio-baidu').innerHTML = i18n('baidu');
     $('#label-fg-color').innerHTML = i18n('fgColor') + ':&nbsp;';
@@ -86,11 +120,20 @@ function initSettings(){
     if(!title || title.trim() == '' || /^[(<br>)(<br\/>)]*$/.test(title)){
         Settings.title = i18n('shortName') + ' ' + thisYear;
     }
+    if(!Settings.mode){
+        Settings.mode = MODE.APPOINT;
+    }
     if(!Settings.fromDay){
         Settings.fromDay = thisYear + '-01-01';
     }
     if(!Settings.toDay){
         Settings.toDay = thisYear + '-12-31';
+    }
+    if(!Settings.fromTime){
+        Settings.fromTime = '00:00';
+    }
+    if(!Settings.toTime){
+        Settings.toTime = '23:59';
     }
     if(!Settings.searchEngine){
         Settings.searchEngine = 'baidu';
@@ -103,16 +146,40 @@ function initSettings(){
     }
 }
 
-function refreshProgress(){
-    var fromDay = Settings.fromDay;
-    var toDay = Settings.toDay;
-    if(!fromDay || !toDay){
-        return;
+function refreshProgress(animation){
+    if(typeof(animation) == 'undefined'){
+        animation = true;
     }
-    var dFromDay = new Date(Date.parse(fromDay.replace(/-/g, "/")));
-    var dToDay = new Date(Date.parse(toDay.replace(/-/g, "/")));
-    var today = getToday();
-    return setProgress(diffDay(dFromDay, today), diffDay(dFromDay, dToDay));
+    if(Settings.mode == MODE.APPOINT){
+        var fromDay = Settings.fromDay;
+        var toDay = Settings.toDay;
+        if(!fromDay || !toDay){
+            return;
+        }
+        var dFromDay = new Date(Date.parse(fromDay.replace(/-/g, "/")));
+        var dToDay = new Date(Date.parse(toDay.replace(/-/g, "/")));
+        var today = getToday();
+        return setProgress(diffDay(dFromDay, today), diffDay(dFromDay, dToDay), animation);
+    }else if(Settings.mode == MODE.EVERY_DAY){
+        var fromTime = Settings.fromTime;
+        var toTime = Settings.toTime;
+        if(!fromTime || !toTime){
+            return;
+        }
+        var now = new Date();
+        var sToday = now.getFullYear() + '/' + (now.getMonth() + 1) + '/' + now.getDate();
+        var nFromTimeMills = Date.parse(sToday + ' ' + fromTime);
+        var nToTimeMills = Date.parse(sToday + ' ' + toTime);
+        var past = now.getTime() - nFromTimeMills;
+        if(past < 0){
+            past = 0;
+        }
+        var total = nToTimeMills - nFromTimeMills;
+        if(total <= 0){
+            total += 24 * 3600 * 1000;
+        }
+        return setProgress(past, total, animation);
+    }
 }
 
 function refreshColors(){
@@ -283,6 +350,21 @@ function initSettingWindow(){
     $('#setting-window .window-close').onclick = function(){
         this.parentNode.parentNode.parentNode.style.display='none';
     };
+    var modeRadios = document.getElementsByName('mode');
+    var modeRadioClick = function(){
+        Settings.mode = this.value;
+        selectModeFieldset(this.value);
+    };
+    modeRadios.forEach(function(v, i){
+        if(v.value == Settings.mode){
+            v.checked = 'checked';
+        }else{
+            delete v.checked;
+        }
+        v.onclick = modeRadioClick;
+    });
+    selectModeFieldset(Settings.mode);
+
     $('#from-day').value = Settings.fromDay;
     $('#to-day').value = Settings.toDay;
     $('#from-day').onchange = function(){
@@ -291,6 +373,16 @@ function initSettingWindow(){
     $('#to-day').onchange = function(){
         Settings.toDay = this.value;
     };
+
+    $('#from-time').value = Settings.fromTime;
+    $('#to-time').value = Settings.toTime;
+    $('#from-time').onchange = function(){
+        Settings.fromTime = this.value;
+    };
+    $('#to-time').onchange = function(){
+        Settings.toTime = this.value;
+    };
+
     var seRadios = document.getElementsByName('search-engine');
     var radioClick = function(){
         Settings.searchEngine = this.value;
@@ -314,7 +406,18 @@ function initSettingWindow(){
     };
 }
 
-function setProgress(past, total){
+function selectModeFieldset(mode){
+    var modeFieldsets = document.getElementsByName('mode-fieldset');
+    modeFieldsets.forEach(function(v, i){
+        v.style.display = 'none';
+    });
+    $('#fieldset-' + mode).style.display = 'block';
+}
+
+function setProgress(past, total, animation){
+    if(typeof(animation) == 'undefined'){
+        animation = true;
+    }
     if(total <= 0){
         return -1;
     }
@@ -323,7 +426,11 @@ function setProgress(past, total){
     }
     var pastPercent = (past / total * 1000) / 10;
     var past = $('.progress-ctn .past');
-    aniToPast(pastPercent);
+    if(animation){
+        aniToPast(pastPercent);
+    }else{
+        past.style.width = pastPercent + '%';
+    }
     var percentSpan = $('.percents');
     percentSpan.style.left = pastPercent + '%';
     percentSpan.innerHTML = (Math.round(pastPercent * 10) / 10) + '%';

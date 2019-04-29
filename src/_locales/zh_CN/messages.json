@@ -7,5 +7,6 @@
     "searchEngine": {"message": "搜索引擎"},
     "fgColor": {"message": "前景颜色"},
     "bgColor": {"message": "背景颜色"},
-    "baidu": {"message": "百度"}
+    "baidu": {"message": "百度"},
+    "everyDay": {"message": "每天"}
 }
